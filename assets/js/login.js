@@ -1,6 +1,6 @@
 // console.log("we are in");
 
-// console.log(localStorage.getItem("ASWebUserKeyByNAZA"));
+console.log(localStorage.getItem("ASWebUserKeyByNAZA"));
 
 var winUrl="https://americansave.pro"
 var apiUrl="https://aswserver.onrender.com"

@@ -9,7 +9,7 @@ document.getElementsByClassName("nav_tog")[0].addEventListener("click",()=>{
 
 
 var userId = localStorage.getItem("ASWebUserKeyByNAZA")
-
+console.log(userId);
 
 
 fetch(`${apiUrl}/user/user/${userId}`)
