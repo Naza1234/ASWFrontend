@@ -36,7 +36,7 @@ fetch(`${apiUrl}/history/history/${userId}`)
 })
 .then((data) => {
     data.reverse();
- console.log(data);
+ // console.log(data);
  for (let i = 0; i < data.length; i++) {
     const element = data[i];
     populateData(element)

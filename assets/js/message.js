@@ -59,7 +59,7 @@ from.addEventListener("submit",(e)=>{
         return response.json();
       })
       .then((data) => {
-       console.log(data);
+       // console.log(data);
        location.reload()
       })
       .catch((error) => {

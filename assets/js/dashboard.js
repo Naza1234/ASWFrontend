@@ -1,4 +1,4 @@
-console.log("done it agin");
+// console.log("done it agin");
 
 
 function shortenString(data) {
@@ -18,7 +18,7 @@ fetch(`${apiUrl}/user/user/${userId}`)
   return response.json();
 })
 .then((data) => {
- console.log(data);
+ // console.log(data);
  document.getElementsByClassName("user_name")[0].innerHTML=`Welcome back, ${shortenString(data.userName)}`
  document.getElementsByClassName("total_bal")[0].innerHTML=`$${data.AccountBalance}`
 })
@@ -40,7 +40,7 @@ fetch(`${apiUrl}/history/history/${userId}`)
 })
 .then((data) => {
     data.reverse();
- console.log(data);
+//  console.log(data);
  for (let i = 0; i < data.length; i++) {
     const element = data[i];
     populateData(element)
@@ -51,7 +51,7 @@ fetch(`${apiUrl}/history/history/${userId}`)
         withdrawal.push(element.Amount)
         document.getElementsByClassName("withdrawal_amount")[0].innerHTML=`$${sumArray(withdrawal)}`
     }
-    console.log(deposit,withdrawal);
+    // console.log(deposit,withdrawal);
  }
 
 })

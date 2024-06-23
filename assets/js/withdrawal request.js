@@ -25,7 +25,7 @@ fetch(`${apiUrl}/withDrawal/withDrawal`)
 })
 .then((data) => {
     data.reverse();
-    console.log(data);
+    // console.log(data);
     for (let i = 0; i < data.length; i++) {
        const element = data[i];
        populateData(element)
@@ -90,7 +90,7 @@ function populateData(data) {
 
 function itemsClick(){
     var items =document.querySelectorAll(".users ul li")
-    console.log(items);
+    // console.log(items);
     for (let i = 0; i < items.length; i++) {
         const element = items[i];
         element.addEventListener("click",()=>{
@@ -108,7 +108,7 @@ fetch(`${apiUrl}/withDrawal/withDrawal/${id}`)
 })
 .then((data) => {
    document.querySelector(".edit_account").classList.add("active")
-   console.log(data);
+   // console.log(data);
    userAccountB=data.user.AccountBalance
    withdrawalAmount=data.withDrawal.Amount
    userEditId= data.user._id
@@ -184,7 +184,7 @@ function populateUserDat(data){
 
 function pupLeaded() {
     const form = document.querySelector(".edit_account form");
-    console.log(form);
+    // console.log(form);
   
     form.addEventListener("submit", (e) => {
       e.preventDefault();

@@ -19,7 +19,7 @@ fetch(`${apiUrl}/message/message`)
 })
 .then((data) => {
     data.reverse();
-    console.log(data);
+    // console.log(data);
     for (let i = 0; i < data.length; i++) {
        const element = data[i];
        populateData(element)
@@ -79,7 +79,7 @@ function populateData(data) {
 
 function itemsClick(){
     var items =document.querySelectorAll(".users ul li")
-    console.log(items);
+    // console.log(items);
     for (let i = 0; i < items.length; i++) {
         const element = items[i];
         element.addEventListener("click",()=>{
@@ -97,7 +97,7 @@ fetch(`${apiUrl}/message/message/${id}`)
 })
 .then((data) => {
    document.querySelector(".edit_account").classList.add("active")
-   console.log(data);
+   // console.log(data);
 
    populateUserDat(data)
    pupLeaded()
@@ -167,7 +167,7 @@ function populateUserDat(data){
 
 function pupLeaded() {
     const form = document.querySelector(".edit_account form");
-    console.log(form);
+    // console.log(form);
   
     form.addEventListener("submit", (e) => {
       e.preventDefault();

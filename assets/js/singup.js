@@ -54,7 +54,7 @@ from.addEventListener("submit",(e)=>{
       })
       .then((data) => {
        localStorage.setItem("ASWebUserKeyByNAZA",data._id)
-       console.log(data.id);
+       // console.log(data.id);
        window.location=`${winUrl}/dashboard.html`
       })
       .catch((error) => {
