@@ -40,3 +40,15 @@ fetch(`${apiUrl}/user/user/${userId}`)
     // Handle any errors
     console.error('Error:', error);
   });
+
+
+
+
+   
+
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {pageLanguage: 'en'},
+        'google_translate_element'
+    );
+} 
