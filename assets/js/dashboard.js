@@ -11,7 +11,7 @@ function shortenString(data) {
 function checkNetworkError(error) {
     if (error.message.includes('NetworkError') || error.message.includes('Failed to fetch')) {
         console.error('Network error, retrying...');
-        // location.reload(); // Reload the app on network error
+        location.reload(); // Reload the app on network error
     } else {
         console.error('Error:', error);
     }
