@@ -1,3 +1,5 @@
+
+
 function shortenString(data) {
     if (typeof data !== 'string') {
         throw new Error('Input must be a string');
@@ -22,6 +24,7 @@ fetch(`${apiUrl}/user/user/${userId}`)
     .then((response) => response.json())
     .then((data) => {
         document.getElementsByClassName("user_name")[0].innerHTML = `Welcome back, ${shortenString(data.userName)}`;
+        document.getElementsByClassName("loading_animation")[0].classList.add("not_active")
         document.getElementsByClassName("total_bal")[0].innerHTML = `$${data.AccountBalance}`;
     })
     .catch((error) => checkNetworkError(error));
