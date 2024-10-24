@@ -34,6 +34,7 @@ fetch(`${apiUrl}/deposit/deposit`)
     }
     itemsClick()
     search()
+
 })
 .catch((error) => {
   // Handle any errors
@@ -113,13 +114,14 @@ fetch(`${apiUrl}/deposit/deposit/${id}`)
    userAccountB=data.user.AccountBalance
    depositAmount=data.deposit.Amount
    userEditId= data.user._id
- paramsForHistory = {
+   paramsForHistory = {
     userId: data.user._id,
     TransferName: data.user.userName,
     Amount: data.deposit.Amount,
     date: data.deposit.createdAt,
     Type: "deposit",
   };
+
    populateUserDat(data)
    pupLeaded()
 

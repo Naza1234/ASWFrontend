@@ -471,7 +471,9 @@ body.logs{
     position: relative;
   }
 
-  
+  main .history.users{
+    padding: 10px;
+  }
   main .history div{
     width: 100%;
     justify-content: space-between;
@@ -496,7 +498,7 @@ body.logs{
   main .history ul li{
     width: 100%;
     /* margin-top: 5px; */
-    height: 75px;
+    min-height: 75px;
     /* border-top: 2px solid var(--primary-back-gray); */
     border-bottom: 2px solid var(--primary-back-gray);
     display: flex;
@@ -518,6 +520,64 @@ body.logs{
     font-size: 16px;
     font-weight: 300;
     opacity: .7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  main .history ul li h1 b.pending{
+    padding: 4px;
+    font-size: 8px;
+    font-weight: 400;
+    color: #fff;
+    background-color: orange;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+  }
+  .users ul li span.pending {
+    align-self: flex-end;
+    pointer-events: none;
+    padding: 4px;
+    font-size: 8px;
+    font-weight: 400;
+    color: #fff;
+    background-color: orange;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+  .users ul li span.approved {
+    align-self: flex-end;
+    pointer-events: none;
+    padding: 4px;
+    font-size: 8px;
+    font-weight: 400;
+    color: #fff;
+    background-color: rgb(4, 175, 4);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+  main .history ul li h1 b.approved{
+    padding: 4px;
+    font-size: 8px;
+    font-weight: 400;
+    color: #fff;
+    background-color: rgb(4, 175, 4);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
   }
 
   main .history ul li h2{
@@ -527,7 +587,7 @@ body.logs{
 
   main .history ul li svg{
     position: absolute;
-    bottom: 10px;
+    bottom: 5px;
     right: 0px;
   }
 
@@ -554,17 +614,24 @@ body.logs{
 
   main .cover{
     width: 100%;
-    height: calc(100% - 130px);
+    /* height: calc(100% - 130px); */
     /* background-color: #595FEE; */
     display: flex;
     align-items: center;
     justify-content: center;
   }
+  main .cover.withdrawal_cont {
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    height: calc(100% - 130px);
+    padding: 10px;
+  }
   .popup form,
   .edit_account form,
   main .cover form,
   main .cover .pay{
-    padding: 35px 20px;
+    padding: 30px 20px;
     border-radius: 10px;
     background-color: var(--primary-back-white);
     display: flex;
@@ -574,6 +641,9 @@ body.logs{
     width: calc(100% - 50px);
   }
 
+  main .cover form.support_form{
+    align-self: flex-start;
+  }
   /* .edit_account form h1, */
   .popup form h1,
   main .cover form h1,
@@ -652,16 +722,7 @@ body.logs{
     transition: .5s ease-in-out;
   }
 
-  .popup form button:hover,
-  .edit_account form button:hover,
-  main .cover form button:hover,
-  main .cover .pay button:hover{
-    background-color: var(--primary-text-blue);
-    color: var(--primary-text-white);
-  }
-
-
-
+ 
 
   .history.in_history_page{
     height: 95%;
@@ -669,8 +730,125 @@ body.logs{
 
   }
 
+  main .cover form .flex{
+    display: flex;
+    flex: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+  }
+  main .cover form .flex hr{
+   width: 100%;
+   height: 2px;
+   background-color: var(--primary-back-gray);
+   border-radius: 100px;
+  }
+  main .cover form .flex h2{
+    color: var(--primary-text-black);
+    opacity: .7;
+    background-color: var(--primary-back-white);
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 400;
+  }
 
 
+  .chart_with_support{
+    align-self: center;
+    justify-self: center;
+    width: 300px;
+    padding: 7px;
+    border-radius: 5px;
+    height: fit-content;
+    /* display: flex;
+    flex-direction: column; */
+    /* gap: 10px; */
+    box-shadow: 0px 0px 20px 10px var(--primary-back-gray);
+  }
+  .chart_with_user h3,
+  main .cover form .chart_with_support h3{
+    color: var(--primary-text-black);
+    opacity: 1;
+    background-color: var(--primary-back-white);
+    font-size: 18px;
+    text-transform: capitalize;
+    font-weight: 400;
+  }
+  .chart_with_user ul,
+  .chart_with_support ul{
+    overflow-y: auto;
+    height: 350px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .chart_with_user ul{
+    height: calc(100% - 20px - 20px - 35px - 18px);
+  }
+
+  .chart_with_user ul li,
+  .chart_with_support ul li{
+    width: fit-content;
+    max-width: 70%;
+    color: var(--primary-text-black);
+    background-color: var(--primary-back-gray);
+    font-size: 14px;
+    text-transform: capitalize;
+    font-weight: 400;
+    padding: 10px;
+    border-radius: 10px 10px 10px 0px;
+  }
+  .chart_with_user ul li.me,
+  .chart_with_support ul li.me{
+    background-color: var(--primary-text-blue);
+    color: var(--primary-text-white);
+    border-radius: 10px 10px 0px 10px;
+    align-self: flex-end;
+  }
+  .chart_with_user span,
+  .chart_with_support span{
+    display: flex;
+    width: 100%;
+    height:35px;
+  }
+  .chart_with_user span input,
+  .chart_with_support span input{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid var(--primary-text-blue);
+  }
+  .chart_with_user span button,
+  main .cover form .chart_with_support span button{
+    border-radius: 5px 5px 5px 0px;
+    color: var(--primary-text-blue);
+    background-color: var(--primary-back-white);
+    border: 2px solid var(--primary-text-blue);
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 400;
+    height: 100%;
+    width: 65px;
+    align-self: center;
+    transition: .5s ease-in-out;
+  }
+  .chart_with_support span{}
+  .chart_with_support span{}
+ 
+
+  .chart_with_user button:hover,
+  main .cover form .chart_with_support span button:hover,
+  .popup form button:hover,
+  .edit_account form button:hover,
+  main .cover form button:hover,
+  main .cover .pay button:hover{
+    background-color: var(--primary-text-blue);
+    color: var(--primary-text-white);
+
+  }
 
 
 
@@ -725,6 +903,7 @@ body.logs{
     height: calc(100% - 115px);
     padding: 0px 10px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .users ul li{
@@ -830,6 +1009,21 @@ body.logs{
 }
 .popup.active{
   scale: 1;
+}
+
+.risipt{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  right: 0;
+  overflow: hidden;
+  background-color: #000;
 }
 
 @media screen and (max-width : 900px) {
@@ -965,7 +1159,9 @@ body.logs{
     /* width: 48%; */
     position: relative;
   }
-
+  main .cover.withdrawal_cont{
+    flex-direction: column;
+  }
   .edit_account form,
   main .cover form,
   main .cover .pay{
@@ -1010,6 +1206,7 @@ body.logs{
 }
 .edit_account.active{
   scale: 1;
+  height: 700px;
 }
 .users{
   width: calc(100vw - 20px);
@@ -1128,3 +1325,16 @@ p.hid,
 @keyframes l9-2 {
     100%{transform: translateX(13px) rotate(-180deg) translateX(13px)}
 }
+
+h1.hid{
+  display: none;
+}
+
+@media print {
+  .main_r_body {
+    width: fit-content;
+    background: none;
+    /* Any other print-specific styles */
+  }
+}
+

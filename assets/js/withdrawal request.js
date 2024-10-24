@@ -121,6 +121,7 @@ fetch(`${apiUrl}/withDrawal/withDrawal/${id}`)
     date: data.withDrawal.createdAt,
     Type: "withdrawal",
   };
+   maker(data)
    populateUserDat(data)
    pupLeaded()
 
@@ -175,6 +176,11 @@ function populateUserDat(data){
 </label>                
 
 <button> processed </button>
+<br>
+<button type="button" onclick="downloadHTMLAsPDF('${data.user.userName}-withdraw-slip')">
+generate slip
+</button>
+
 </form>
       `;
     
@@ -247,3 +253,131 @@ function pupLeaded() {
     });
   }
   
+
+
+  
+  function downloadHTMLAsPDF(name) {
+    // Get the HTML element to convert
+    var element = document.getElementById('content-to-download');
+    
+    // Optional settings for the PDF
+    const options = {
+        margin: 0, // No margins
+        filename: `${name}.pdf`, // Output filename
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 1 }, // Scale up for higher quality
+        jsPDF: { 
+            unit: 'px', 
+            format: [382, 735], // Custom width and height for PDF page in pixels
+            orientation: 'portrait' 
+        }, 
+        // Avoid breaks between elements
+    };
+
+ 
+    // Convert the HTML element to PDF and trigger download
+    html2pdf().from(element).set(options).save();
+}
+
+
+function maker({user,withDrawal}) {
+  console.log(user);
+  console.log(withDrawal);
+  var html=
+  `
+  <div class="main_r_body" id="content-to-download" style="position: relative;width: 382px; height: 735px; isolation: isolate; background: url(../images/r back.png); background-position: center; display: flex; justify-content: center; align-items: center; background-size: cover; background-repeat: no-repeat;">
+  <img src="./assets/images/r back.png" alt="" style="position: absolute;width: 100%;height: 100%; z-index: -10;">
+  <div class="more_info_r" style="width: 360px; height: 530px; padding: 14px; background-color: #fff; border-radius: 5px; gap: 20px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
+      <img src="./assets/images/logo (3).png" alt="" style="height: 33px; width: auto;">
+      <br>
+      <span style="display: flex; justify-content: space-between; align-items: baseline; width: 100%;">
+          <h2 style="font-size: 12px; font-weight: 500; opacity: .7;">Account name</h2>
+          <h1 style="font-size: 12px; font-weight: 500;">${user.userName}</h1>
+      </span>
+      <span style="display: flex; justify-content: space-between; align-items: baseline; width: 100%;">
+          <h2 style="font-size: 12px; font-weight: 500; opacity: .7;">Account email</h2>
+          <h1 style="font-size: 12px; font-weight: 500;">${user.userEmail}</h1>
+      </span>
+      <span style="display: flex; justify-content: space-between; align-items: baseline; width: 100%;">
+          <h2 style="font-size: 12px; font-weight: 500; opacity: .7;">Account balance</h2>
+          <h1 style="font-size: 12px; font-weight: 500;">$${user.AccountBalance - withDrawal.Amount}</h1>
+      </span>
+
+      <br>
+      <h5 style="font-size: 12px; font-weight: 500; opacity: .5;">Withdraw details</h5>
+      <div style="width: 250px; display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center;">
+          <span style="display: flex; justify-content: space-between; align-items: baseline; width: 100%;">
+              <h2 style="font-size: 10px; font-weight: 500; opacity: .7;">Amount</h2>
+              <h1 style="font-size: 10px; font-weight: 500;">$${withDrawal.Amount}</h1>
+          </span>
+          <span style="display: flex; justify-content: space-between; align-items: baseline; width: 100%;">
+              <h2 style="font-size: 10px; font-weight: 500; opacity: .7;">Tag type</h2>
+              <h1 style="font-size: 10px; font-weight: 500;">${withDrawal.TagType}</h1>
+          </span>
+          <span style="display: flex; justify-content: space-between; align-items: baseline; width: 100%;">
+              <h2 style="font-size: 10px; font-weight: 500; opacity: .7;">Tag ID</h2>
+              <h1 style="font-size: 10px; font-weight: 500;">${formatString(withDrawal.tagId)}</h1>
+          </span>
+          <br>
+          <img src="./assets/images/successful 1.png" alt="" style="width: 50px; height: 50px;">
+          <h6 style="font-size: 16px; color: #008000; font-weight: 500;">Transaction Success</h6>
+          <br>
+          <span style="display: flex; justify-content: space-between; align-items: baseline; width: 100%;">
+              <h2 style="font-size: 10px; font-weight: 500; opacity: .7;">Date</h2>
+              <h1 style="font-size: 10px; font-weight: 500;">${formatDate(withDrawal.createdAt)}</h1>
+          </span>
+      </div>
+  </div>
+</div>
+
+  `
+
+  document.getElementsByClassName("risipt")[0].innerHTML=html
+}
+
+
+
+function formatString(input) {
+  // Check if input is valid (must be at least 5 characters long)
+  if (!input || input.length < 5) {
+      return "####################";
+  }
+
+  // Remove spaces from input for processing
+  let cleanedInput = input.replace(/\s+/g, '');
+
+  // Extract the first 2 characters
+  let firstTwo = cleanedInput.substring(0, 2);
+
+  // Extract the last 3 characters
+  let lastThree = cleanedInput.substring(cleanedInput.length - 3);
+
+  // Calculate the number of asterisks for the middle portion
+  let middleLength = 15; // Total length - (first 2 + last 3)
+
+  // Ensure we have enough characters for the asterisks to cover
+  let asterisks = middleLength > 0 ? '*'.repeat(middleLength) : '';
+
+  // Return the formatted string
+  return `${firstTwo}${asterisks}${lastThree}`;
+}
+
+
+function formatDate(dateString) {
+  // Create a Date object from the input string
+  const date = new Date(dateString);
+
+  // Check if the date is valid
+  if (isNaN(date.getTime())) {
+      return "Invalid date";
+  }
+
+  // Extract the year, month, and day
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Add leading zero to month if needed
+  const day = String(date.getDate()).padStart(2, '0'); // Add leading zero to day if needed
+
+  // Return the formatted date as 'year-month-day'
+  return `${day}-${month}-${year}`;
+}
+

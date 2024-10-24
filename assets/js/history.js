@@ -58,6 +58,7 @@ function populateData(data) {
             </p>
             <h1>
                 Transfer ${data.Type === "deposit" ? "from" : "to"} ${shortenString(data.TransferName)}
+                <b class="${data.Status==="pending"?"pending":"approved"}">${data.Status}</b>
             </h1>
             <h2>
                 $${data.Amount}
