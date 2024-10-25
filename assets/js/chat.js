@@ -237,7 +237,6 @@ function updateUsers() {
     })
     .then(async (data) => {
       data.reverse();
-      document.querySelector(".users ul").innerHTML=""
       // Populate user data asynchronously
       for (let i = 0; i < data.length; i++) {
         const element = data[i];
@@ -308,7 +307,7 @@ function formatDateOrTime(dateString) {
   function rearrangeUsers() {
     // Select all the user list items
     var users = document.querySelectorAll(".users ul li");
-
+    document.querySelector(".users ul").innerHTML=""
     // Convert the NodeList to an array for sorting
     var userArray = Array.from(users);
     // Sort the users based on their dates
