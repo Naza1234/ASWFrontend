@@ -237,7 +237,7 @@ function updateUsers() {
     })
     .then(async (data) => {
       data.reverse();
-
+      document.querySelector(".users ul").innerHTML=""
       // Populate user data asynchronously
       for (let i = 0; i < data.length; i++) {
         const element = data[i];
