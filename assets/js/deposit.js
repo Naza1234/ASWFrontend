@@ -124,7 +124,7 @@ function populateData(data) {
           <span>${formattedDate}</span> 
           <p style="align-self: flex-start;width: 100%; display: flex;">user name : <b>${shortenString(data.user.userName)}</b>   </p>
            
-          <p style="align-self: flex-start;display: flex; align-items: baseline;">amount : <b>${data.deposit.Amount}</b>   <span class="${data.deposit.Approved? "approved":"pending"}">${data.deposit.Approved? "approved":"pending"}</span></p>
+          <p style="align-self: flex-start;display: flex; align-items: baseline;">amount : <b>${data.deposit.Amount.toLocaleString()}</b>   <span class="${data.deposit.Approved? "approved":"pending"}">${data.deposit.Approved? "approved":"pending"}</span></p>
       </li>
   `;
   container.insertAdjacentHTML("beforeend", html);

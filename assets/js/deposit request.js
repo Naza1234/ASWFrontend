@@ -79,7 +79,7 @@ function populateData(data) {
             <p class="hid">${data.deposit._id}</p>
             <span>${formattedDate}</span>
             <p>user name : <b>${shortenString(data.user.userName)}</b></p>
-            <p>amount : <b>${data.deposit.Amount}</b></p>
+            <p>amount : <b>${data.deposit.Amount.toLocaleString()}</b></p>
         </li>
     `;
     container.insertAdjacentHTML("beforeend", html);
@@ -158,7 +158,7 @@ function populateUserDat(data){
     ${data.user.userName}
 </h1>
 <p class="hid">${data.deposit._id}</p>
-<p>account balance : <b>$${data.user.AccountBalance}</b></p>
+<p>account balance : <b>$${data.user.AccountBalance.toLocaleString()}</b></p>
 <img src="${data.deposit.Proof}" alt="" class="proof">
             <form action="">
                 <button> update balance</button>

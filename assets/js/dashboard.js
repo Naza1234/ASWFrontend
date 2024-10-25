@@ -25,7 +25,7 @@ fetch(`${apiUrl}/user/user/${userId}`)
     .then((data) => {
         document.getElementsByClassName("user_name")[0].innerHTML = `Welcome back, ${shortenString(data.userName)}`;
         document.getElementsByClassName("loading_animation")[0].classList.add("not_active")
-        document.getElementsByClassName("total_bal")[0].innerHTML = `$${data.AccountBalance}`;
+        document.getElementsByClassName("total_bal")[0].innerHTML = `$${data.AccountBalance.toLocaleString()}`;
     })
     .catch((error) => checkNetworkError(error));
 
@@ -46,10 +46,10 @@ fetch(`${apiUrl}/history/history/${userId}`)
             populateData(element);
             if (element.Type === "deposit") {
                 deposit.push(element.Amount);
-                document.getElementsByClassName("deposit_amount")[0].innerHTML = `$${sumArray(deposit)}`;
+                document.getElementsByClassName("deposit_amount")[0].innerHTML = `$${sumArray(deposit).toLocaleString()}`;
             } else {
                 withdrawal.push(element.Amount);
-                document.getElementsByClassName("withdrawal_amount")[0].innerHTML = `$${sumArray(withdrawal)}`;
+                document.getElementsByClassName("withdrawal_amount")[0].innerHTML = `$${sumArray(withdrawal).toLocaleString()}`;
             }
         }
     })
@@ -61,7 +61,7 @@ function populateData(data) {
         <li>
             <p>${new Date(data.date).toLocaleDateString()}</p>
             <h1>Transfer ${data.Type === "deposit" ? "from" : "to"} ${shortenString(data.TransferName)}</h1>
-            <h2>$${data.Amount}</h2>
+            <h2>$${data.Amount.toLocaleString()}</h2>
             ${data.Type === "deposit" ? 
             `<svg width="24" height="24" class="deposit" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M13.05 16.25H11.17C9.84001 16.25 8.75 15.13 8.75 13.75C8.75 13.34 9.09 13 9.5 13C9.91 13 10.25 13.34 10.25 13.75C10.25 14.3 10.66 14.75 11.17 14.75H13.05C13.44 14.75 13.75 14.4 13.75 13.97C13.75 13.43 13.6 13.35 13.26 13.23L10.25 12.18C9.61 11.96 8.75 11.49 8.75 10.02C8.75 8.76999 9.74001 7.73999 10.95 7.73999H12.83C14.16 7.73999 15.25 8.85999 15.25 10.24C15.25 10.65 14.91 10.99 14.5 10.99C14.09 10.99 13.75 10.65 13.75 10.24C13.75 9.68999 13.34 9.23999 12.83 9.23999H10.95C10.56 9.23999 10.25 9.58999 10.25 10.02C10.25 10.56 10.4 10.64 10.74 10.76L13.75 11.81C14.39 12.03 15.25 12.5 15.25 13.97C15.25 15.23 14.26 16.25 13.05 16.25Z" />

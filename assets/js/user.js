@@ -44,7 +44,7 @@ function populateData(data) {
     <p class="hid">${data._id}</p>
     <p>user name : <b>${shortenString(data.userName)}</b></p>
     <p>user email : <b>${data.userEmail}</b></p>
-    <p>account balance : <b>$${data.AccountBalance}</b></p>
+    <p>account balance : <b>$${data.AccountBalance.toLocaleString()}</b></p>
 </li>
       `;
     

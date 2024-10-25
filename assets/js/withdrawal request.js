@@ -76,7 +76,7 @@ function populateData(data) {
             <p class="hid">${data.withDrawal._id}</p>
             <span>${formattedDate}</span>
             <p>user name : <b>${shortenString(data.user.userName)}</b></p>
-            <p>amount : <b>${data.withDrawal.Amount}</b></p>
+            <p>amount : <b>${data.withDrawal.Amount.toLocaleString()}</b></p>
             <p>tag type : <b>${data.withDrawal.TagType}</b></p>
         </li>
     `;
