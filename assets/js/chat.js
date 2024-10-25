@@ -310,7 +310,6 @@ function formatDateOrTime(dateString) {
     var users = document.querySelectorAll(".users ul li");
     document.querySelector(".users ul").innerHTML=""
     console.log(users.length);
-    console.log( document.querySelector(".users ul"));
     // Convert the NodeList to an array for sorting
     var userArray = Array.from(users);
     // Sort the users based on their dates
@@ -333,6 +332,7 @@ function formatDateOrTime(dateString) {
 
     // Reorder the user list in the DOM
     var userList = document.querySelector(".users ul");
+    console.log(userArray.length);
     userArray.forEach(user => {
         userList.appendChild(user);
         // Append each user in the sorted order
