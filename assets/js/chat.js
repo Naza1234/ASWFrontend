@@ -48,7 +48,11 @@ fetch(`${apiUrl}/user/user`)
 async function populateData(data) {
     var container = document.querySelector(".users ul");
     var  newData= await setLastMessage(data._id)
-    var html = `  <li>
+    const existingUser = container.querySelector(`li[data-id="${data._id}"]`);
+    if (existingUser) {
+        existingUser.remove();
+    }
+    var html = `  <li data-id="${data._id}">
     <p class="hid">${data._id}</p>
     <p class="hid">${newData.UncleanedDate}</p>
      <span>${newData.date}</span>
