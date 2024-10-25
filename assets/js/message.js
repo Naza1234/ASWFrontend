@@ -167,4 +167,4 @@ setInterval(() => {
   if (!stillMakingRequestForChat) {
     populateChat(userId)
   }
-}, 5000);
+}, 1000);
