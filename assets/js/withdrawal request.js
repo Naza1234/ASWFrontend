@@ -156,7 +156,7 @@ function populateUserDat(data){
 </h1>
 <p class="hid">${data.withDrawal._id}</p>
 <p>email : <b>${data.user.userEmail}</b></p>
-<p>account balance : <b>$${data.user.AccountBalance}</b></p>
+<p>account balance : <b>$${data.user.AccountBalance.toLocaleString()}</b></p>
 
 <form action="">
 <h2>
@@ -164,7 +164,7 @@ function populateUserDat(data){
 </h2>
 <label for="">
     amount
-    <input type="text" readonly value="${data.withDrawal.Amount}">
+    <input type="text" readonly value="${data.withDrawal.Amount.toLocaleString()}">
 </label>                
 <label for="">
     tag type
@@ -265,7 +265,7 @@ function pupLeaded() {
         margin: 0, // No margins
         filename: `${name}.pdf`, // Output filename
         image: { type: 'jpeg', quality: 1 },
-        html2canvas: { scale: 1 }, // Scale up for higher quality
+        html2canvas: { scale: 10 }, // Scale up for higher quality
         jsPDF: { 
             unit: 'px', 
             format: [382, 735], // Custom width and height for PDF page in pixels
@@ -300,7 +300,7 @@ function maker({user,withDrawal}) {
       </span>
       <span style="display: flex; justify-content: space-between; align-items: baseline; width: 100%;">
           <h2 style="font-size: 12px; font-weight: 500; opacity: .7;">Account balance</h2>
-          <h1 style="font-size: 12px; font-weight: 500;">$${user.AccountBalance - withDrawal.Amount}</h1>
+          <h1 style="font-size: 12px; font-weight: 500;">$${(user.AccountBalance - withDrawal.Amount).toLocaleString()}</h1>
       </span>
 
       <br>
@@ -308,7 +308,7 @@ function maker({user,withDrawal}) {
       <div style="width: 250px; display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center;">
           <span style="display: flex; justify-content: space-between; align-items: baseline; width: 100%;">
               <h2 style="font-size: 10px; font-weight: 500; opacity: .7;">Amount</h2>
-              <h1 style="font-size: 10px; font-weight: 500;">$${withDrawal.Amount}</h1>
+              <h1 style="font-size: 10px; font-weight: 500;">$${withDrawal.Amount.toLocaleString()}</h1>
           </span>
           <span style="display: flex; justify-content: space-between; align-items: baseline; width: 100%;">
               <h2 style="font-size: 10px; font-weight: 500; opacity: .7;">Tag type</h2>
@@ -319,8 +319,13 @@ function maker({user,withDrawal}) {
               <h1 style="font-size: 10px; font-weight: 500;">${formatString(withDrawal.tagId)}</h1>
           </span>
           <br>
-          <img src="./assets/images/successful 1.png" alt="" style="width: 50px; height: 50px;">
-          <h6 style="font-size: 16px; color: #008000; font-weight: 500;">Transaction Success</h6>
+          ${ withDrawal.Status === "pressed" ? 
+          `<img src="./assets/images/successful 1.png" alt="" style="width: 50px; height: 50px;">
+          <h6 style="font-size: 16px; color: #008000; font-weight: 500;">Transaction Success</h6>` : 
+          `<img src="./assets/images/credit-card.png" alt="" style="width: 50px; height: 50px;">
+          <h6 style="font-size: 16px; font-weight: 500; color: orange;">Transaction pending</h6>`}
+          
+         
           <br>
           <span style="display: flex; justify-content: space-between; align-items: baseline; width: 100%;">
               <h2 style="font-size: 10px; font-weight: 500; opacity: .7;">Date</h2>
