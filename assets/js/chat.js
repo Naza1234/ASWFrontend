@@ -306,35 +306,29 @@ function formatDateOrTime(dateString) {
 
 
   function rearrangeUsers() {
-    // Select all the user list items
-    var users = document.querySelectorAll(".users ul li");
-    document.querySelector(".users ul").innerHTML=""
-    console.log(users.length);
-    // Convert the NodeList to an array for sorting
-    var userArray = Array.from(users);
+    // Select the user list and all user list items
+    var userList = document.querySelector(".users ul");
+    var users = Array.from(document.querySelectorAll(".users ul li"));
+    console.log(users);
     // Sort the users based on their dates
-    userArray.sort((a, b) => {
-        // Get the 'hid' element that contains the date or "not yet"
+    users.sort((a, b) => {
         var dateA = a.getElementsByClassName("hid")[1].textContent.trim();
         var dateB = b.getElementsByClassName("hid")[1].textContent.trim();
-         
-        // Handle the case where the date is "not yet"
-        if (dateA === "not yet") return 1; // Place "not yet" at the bottom
-        if (dateB === "not yet") return -1; // Place "not yet" at the bottom
 
-        // Convert the date strings to actual Date objects for comparison
+        if (dateA === "not yet") return 1;
+        if (dateB === "not yet") return -1;
+
         var dateObjA = new Date(dateA);
         var dateObjB = new Date(dateB);
 
-        // Compare the dates (newest first, so we subtract B from A)
         return dateObjB - dateObjA;
     });
 
-    // Reorder the user list in the DOM
-    var userList = document.querySelector(".users ul");
-    console.log(userArray.length);
-    userArray.forEach(user => {
+    // Remove all existing list items in the DOM
+    userList.innerHTML = "";
+    console.log(users);
+    // Append each user in the sorted order
+    users.forEach(user => {
         userList.appendChild(user);
-        // Append each user in the sorted order
     });
 }
