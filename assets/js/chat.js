@@ -44,26 +44,38 @@ fetch(`${apiUrl}/user/user`)
 
 
 
-
 async function populateData(data) {
-    var container = document.querySelector(".users ul");
-    var  newData= await setLastMessage(data._id)
-    const existingUser = container.querySelector(`li[data-id="${data._id}"]`);
-    if (existingUser) {
-        existingUser.remove();
-    }
-    var html = `  <li data-id="${data._id}">
-    <p class="hid">${data._id}</p>
-    <p class="hid">${newData.UncleanedDate}</p>
-     <span>${newData.date}</span>
-    <p>user name : <b class="name_to_chart">${shortenString(data.userName)}</b></p>
-    <p>user email : <b>${data.userEmail}</b></p>
-    <p><b>${newData.message}</b></p>
-</li>
-      `;
-    
-    container.insertAdjacentHTML("beforeend",html);
+  var container = document.querySelector(".users ul");
+  var newData = await setLastMessage(data._id);
+
+  // Find existing user item by data-id attribute
+  const existingUser = container.querySelector(`li[data-id="${data._id}"]`);
+
+  // Define the HTML structure for the user item
+  var html = `
+      <li data-id="${data._id}">
+          <p class="hid">${data._id}</p>
+          <p class="hid">${newData.UncleanedDate}</p>
+          <span>${newData.date}</span>
+          <p>user name: <b class="name_to_chart">${shortenString(data.userName)}</b></p>
+          <p>user email: <b>${data.userEmail}</b></p>
+          <p><b>${newData.message}</b></p>
+      </li>
+  `;
+
+  // Create a temporary element to convert the HTML string to an actual element
+  const tempElement = document.createElement("div");
+  tempElement.innerHTML = html;
+  const newUserElement = tempElement.firstElementChild;
+
+  // Replace the existing user item or append if it doesn't exist
+  if (existingUser) {
+      existingUser.replaceWith(newUserElement);
+  } else {
+      container.appendChild(newUserElement);
+  }
 }
+
 
 
 
