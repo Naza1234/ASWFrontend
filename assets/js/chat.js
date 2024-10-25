@@ -52,7 +52,7 @@ async function populateData(data) {
     <p class="hid">${data._id}</p>
     <p class="hid">${newData.UncleanedDate}</p>
      <span>${newData.date}</span>
-    <p>user name : <b>${shortenString(data.userName)}</b></p>
+    <p>user name : <b class="name_to_chart">${shortenString(data.userName)}</b></p>
     <p>user email : <b>${data.userEmail}</b></p>
     <p><b>${newData.message}</b></p>
 </li>
@@ -73,11 +73,12 @@ function itemsClick(){
         element.addEventListener("click",()=>{
             var id = element.getElementsByClassName("hid")[0].textContent.trim()
             document.querySelector(".edit_account").classList.add("active")
-
-            chatId =id
+             var nameOfChart=element.getElementsByClassName("name_to_chart")[0].innerHTML.trim()            
+             chatId =id
         
          
             populateChat(id)
+            document.getElementsByClassName("name_of_chart")[0].innerHTML=`charting with: ${nameOfChart}`
             const container = document.getElementsByClassName("messages_ul")[0]
             container.innerHTML=""
             document.getElementsByClassName("messages_ul")[0].classList.add("active")
@@ -308,6 +309,8 @@ function formatDateOrTime(dateString) {
     // Select all the user list items
     var users = document.querySelectorAll(".users ul li");
     document.querySelector(".users ul").innerHTML=""
+    console.log(users.length);
+    console.log( document.querySelector(".users ul"));
     // Convert the NodeList to an array for sorting
     var userArray = Array.from(users);
     // Sort the users based on their dates
@@ -330,7 +333,6 @@ function formatDateOrTime(dateString) {
 
     // Reorder the user list in the DOM
     var userList = document.querySelector(".users ul");
-    userList.innerHTML=""
     userArray.forEach(user => {
         userList.appendChild(user);
         // Append each user in the sorted order
