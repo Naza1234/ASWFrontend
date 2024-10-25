@@ -325,7 +325,7 @@ function formatDateOrTime(dateString) {
     // Select the user list and all user list items
     var userList = document.querySelector(".users ul");
     var users = Array.from(document.querySelectorAll(".users ul li"));
-    console.log(users);
+    
     // Sort the users based on their dates
     users.sort((a, b) => {
         var dateA = a.getElementsByClassName("hid")[1].textContent.trim();
@@ -342,7 +342,6 @@ function formatDateOrTime(dateString) {
 
     // Remove all existing list items in the DOM
     userList.innerHTML = "";
-    console.log(users);
     // Append each user in the sorted order
     users.forEach(user => {
         userList.appendChild(user);
