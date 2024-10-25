@@ -82,7 +82,8 @@ async function populateData(data) {
 var chatId
 
 function itemsClick(){
-    var items =document.querySelectorAll(".users ul li")
+  var items =document.querySelectorAll(".users ul li")
+  console.log("okay");
     // console.log(items);
     for (let i = 0; i < items.length; i++) {
         const element = items[i];
@@ -91,7 +92,7 @@ function itemsClick(){
             document.querySelector(".edit_account").classList.add("active")
              var nameOfChart=element.getElementsByClassName("name_to_chart")[0].innerHTML.trim()            
              chatId =id
-        
+             console.log("okay");
          
             populateChat(id)
             document.getElementsByClassName("name_of_chart")[0].innerHTML=`charting with: ${nameOfChart}`
@@ -346,4 +347,5 @@ function formatDateOrTime(dateString) {
     users.forEach(user => {
         userList.appendChild(user);
     });
+    itemsClick()
 }
