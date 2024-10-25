@@ -235,7 +235,7 @@ function search() {
 
   setInterval(() => {
     checkIfActive()
-}, 5000);
+}, 2000);
 
 
 
