@@ -552,7 +552,7 @@ body.logs{
     margin-left: 10px;
 }
   
-  .users ul li span.decline {
+  .users ul li span.declined {
     align-self: flex-end;
     pointer-events: none;
     padding: 4px;
