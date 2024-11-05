@@ -177,10 +177,10 @@ function populateUserDat(data){
 
 <button> processed </button>
 <br>
-<button type="button" onclick="declineWithDrawal('${data.user.userName}')">
+<button type="button" onclick="declineWithDrawal('${data.withDrawal._id}')">
 decline request
 </button>
-<button type="button" onclick="downloadHTMLAsPDF('${data.withDrawal._id}-withdraw-slip')">
+<button type="button" onclick="downloadHTMLAsPDF('${data.user.userName}-withdraw-slip')">
 generate slip
 </button>
 
