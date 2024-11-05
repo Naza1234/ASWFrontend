@@ -937,6 +937,11 @@ body.logs{
   border: 2px solid rgb(36, 161, 36);
   border-left: 15px solid rgb(36, 161, 36);
 }
+
+.users ul li.declined{
+  border: 2px solid rgb(255, 0, 0);
+  border-left: 15px solid rgb(255, 0, 0);
+}
 .users ul li:hover{
     border: 2px solid var(--primary-text-blue);
     border-left: 15px solid var(--primary-text-blue);
