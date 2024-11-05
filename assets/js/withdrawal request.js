@@ -72,7 +72,11 @@ function populateData(data) {
     const container = document.querySelector(".users ul");
     const formattedDate = formatDate(data.withDrawal.createdAt);
     const html = `
-        <li class="${data.withDrawal.Status === "pending"? data.withDrawal.Status === "declined"?"declined":" " : "approved"}">
+        <li class="${data.withDrawal.Status === "pending"
+        ? ""
+        : data.withDrawal.Status === "declined"
+            ? "declined"
+            : "approved"}">
             <p class="hid">${data.withDrawal._id}</p>
             <span>${formattedDate}</span>
             <p>user name : <b>${shortenString(data.user.userName)}</b></p>
