@@ -177,7 +177,10 @@ function populateUserDat(data){
 
 <button> processed </button>
 <br>
-<button type="button" onclick="downloadHTMLAsPDF('${data.user.userName}-withdraw-slip')">
+<button type="button" onclick="declineWithDrawal('${data.user.userName}')">
+decline request
+</button>
+<button type="button" onclick="downloadHTMLAsPDF('${data.withDrawal._id}-withdraw-slip')">
 generate slip
 </button>
 
@@ -386,3 +389,24 @@ function formatDate(dateString) {
   return `${day}-${month}-${year}`;
 }
 
+function declineWithDrawal(id){
+  const updatedDepositData = {
+    Status: "declined",
+  }
+  return fetch(`${apiUrl}/withDrawal/withDrawal/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(updatedDepositData),
+  })
+.then((response) => {
+  return response.json();
+})
+.then((data) => {
+  window.location.reload();
+})
+.catch((error) => {
+  console.error('Error:', error);
+})
+}
