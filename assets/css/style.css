@@ -551,6 +551,21 @@ body.logs{
     align-items: center;
     margin-left: 10px;
 }
+  
+  .users ul li span.decline {
+    align-self: flex-end;
+    pointer-events: none;
+    padding: 4px;
+    font-size: 8px;
+    font-weight: 400;
+    color: #fff;
+    background-color: rgb(255, 0, 0);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
 
   .users ul li span.approved {
     align-self: flex-end;

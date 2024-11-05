@@ -103,6 +103,12 @@ function formatDate(dateString) {
 }
 
 function populateData(data) {
+  const status = data.withDrawal.Status === "pressed" 
+    ? "approved" 
+    : data.withDrawal.Status === "declined" 
+        ? "declined" 
+        : "pending";
+
   const container = document.querySelector(".users ul");
   const formattedDate = formatDate(data.withDrawal.createdAt);
   const html = `
@@ -111,7 +117,7 @@ function populateData(data) {
           <span>${formattedDate}</span> 
           <p style="align-self: flex-start;width: 100%; display: flex;">user name : <b>${shortenString(data.user.userName)}</b>   </p>
            
-          <p style="align-self: flex-start; align-items: baseline;display: flex;">amount : <b>${data.withDrawal.Amount.toLocaleString()}</b>   <span class="${data.withDrawal.Status==="pressed"? "approved":"pending"}">${data.withDrawal.Status==="pressed"? "approved":"pending"}</span></p>
+          <p style="align-self: flex-start; align-items: baseline;display: flex;">amount : <b>${data.withDrawal.Amount.toLocaleString()}</b>   <span class="${status}">${status}</span></p>
       </li>
   `;
   container.insertAdjacentHTML("beforeend", html);
